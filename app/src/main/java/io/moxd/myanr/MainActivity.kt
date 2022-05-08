@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import kotlin.concurrent.thread
 
 import kotlin.random.Random
 
@@ -21,20 +22,29 @@ class MainActivity : AppCompatActivity() {
         textView.text = "[ placeholder for some random values ]"
 
         findViewById<Button>(R.id.run_button).setOnClickListener {
-            run()
+
+            thread(start = true) { run() }
+
         }
 
         findViewById<Button>(R.id.stop_button).setOnClickListener {
             stop()
         }
+
+
+
     }
+
 
     private fun run() {
         running = true
-        while(running) {
-            textView.text = Random.nextInt().toString()
 
-        }
+
+
+            while (running) {
+                runOnUiThread {textView.text = Random.nextInt().toString()}
+
+            }
 
     }
 
@@ -43,3 +53,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
