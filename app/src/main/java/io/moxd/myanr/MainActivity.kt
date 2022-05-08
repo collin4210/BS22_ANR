@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 
+import kotlin.random.Random
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var textView: TextView
+
+    private var running = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +30,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun run() {
+        running = true
+        while(running) {
+            textView.text = Random.nextInt().toString()
+
+        }
 
     }
 
     private fun stop() {
-
+            running = false
     }
 
 }
