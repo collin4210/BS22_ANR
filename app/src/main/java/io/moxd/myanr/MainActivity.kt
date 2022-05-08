@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         running = true
         while(running) {
             textView.text = Random.nextInt().toString()
-
+//
         }
 
     }
